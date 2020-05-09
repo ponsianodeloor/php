@@ -10,7 +10,7 @@ function createMap () {
   map = new google.maps.Map(document.getElementById('map'), options);
 
   var script = document.createElement('script');
-  script.src = 'http://localhost/dropbox/php/google/google_maps/data.json';
+  script.src = 'https://developers.google.com/maps/documentation/javascript/examples/json/earthquake_GeoJSONP.js';
   document.getElementsByTagName('head')[0].appendChild(script);
 
   map.data.setStyle(function(feature) {
