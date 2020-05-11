@@ -34,7 +34,7 @@
       var vectorLayer = new ol.layer.Vector({
         source: new ol.source.Vector({
           //url: 'https://openlayers.org/en/v3.20.1/examples/data/geojson/countries.geojson',
-          url:'http://localhost:8080/geoserver/aguapotable.apptics.com.ec/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=aguapotable.apptics.com.ec%3Alimite_celir_provincial&maxFeatures=50&outputFormat=application%2Fjson',
+          url: 'http://localhost:8080/geoserver/aguapotable.apptics.com.ec/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=aguapotable.apptics.com.ec%3Alimite_celir_provincial&maxFeatures=50&outputFormat=application%2Fjson',
           format: new ol.format.GeoJSON()
         }),
         style: function(feature, resolution) {
@@ -52,8 +52,8 @@
         ],
         target: 'map',
         view: new ol.View({
-          center: [-9000000, -190000],
-          zoom: 7
+          center: [0, 0],
+          zoom: 1
         })
       });
 

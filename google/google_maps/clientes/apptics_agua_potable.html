@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body onload = "loadMap()">
+    <h2>Quito Businnes Hotels</h2>
+    <div id = "map" style = "width:640px; height:480px;"></div>
+      <script>
+
+
+        function obtenerJson(yourUrl){
+            var Httpreq = new XMLHttpRequest(); // a new request
+            Httpreq.open("GET",yourUrl,false);
+            Httpreq.send(null);
+            return Httpreq.responseText;
+        }
+
+        // fake JSON call
+        function getJSONMarkers() {
+          var json_obj = JSON.parse(obtenerJson('http://localhost/dropbox/php/google/google_maps/clientes/json_data/select_jsondata.php'));
+          const markers = json_obj;
+          console.log(markers);
+          return markers;
+        }
+
+        function loadMap() {
+          // Initialize Google Maps
+          const mapOptions = {
+            center:new google.maps.LatLng(-0.286209,-78.4493546),
+            zoom: 16
+          }
+          const map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+          // Load JSON Data
+          const clienteMarkers = getJSONMarkers();
+
+          // Initialize Google Markers
+          for(cliente of clienteMarkers) {
+            let marker = new google.maps.Marker({
+              map: map,
+              position: new google.maps.LatLng(cliente.location[0], cliente.location[1]),
+              title: cliente.name
+            })
+          }
+        }
+      </script>
+      <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAWSqmZmuMhkCKGX54RwL9TZXqpUhS7EEg&callback=loadMap">
+      </script>
+  </body>
+</html>
