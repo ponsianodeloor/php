@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body onload = "loadMap()">
+    <h2>Quito Businnes Hotels</h2>
+    <div class="">
+      <input type="text" name="txt_codigo_catastral" id="txt_codigo_catastral" value="">
+    </div>
+    <div id = "map" style = "width:100%; height:480px;"></div>
+      <script>
+        function obtenerJson(yourUrl){
+            var Httpreq = new XMLHttpRequest(); // a new request
+            Httpreq.open("GET",yourUrl,false);
+            Httpreq.send(null);
+            return Httpreq.responseText;
+        }
+
+        // fake JSON call
+        function getJSONMarkers() {
+          var json_obj = JSON.parse(obtenerJson('http://localhost/dropbox/php/google/google_maps/clientes/json_data/select_jsondata_postgres.php'));
+          const markers = json_obj;
+          //console.log(markers);
+          return markers;
+        }
+
+        function loadMap() {
+          // Initialize Google Maps
+          const mapOptions = {
+            center:new google.maps.LatLng(-2.2132296,-79.4417224),
+            zoom: 16
+          }
+          const map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+          // Load JSON Data
+          const clienteMarkers = getJSONMarkers();
+
+          // Initialize Google Markers
+          for(cliente of clienteMarkers) {
+            var marker = new google.maps.Marker({
+              map: map,
+              position: new google.maps.LatLng(cliente.location[0], cliente.location[1]),
+              title: cliente.name
+            });
+            obtenerDatosMarkerClick(marker, cliente.name, cliente.location[0], cliente.location[1] );
+          }
+        }
+
+        function obtenerDatosMarkerClick(marker, paramGetData, lat, lng) {
+          var infowindow = new google.maps.InfoWindow({
+            content: paramGetData
+          });
+          marker.addListener('click', function() {
+            infowindow.open(marker.get('map'), marker);
+            //window.alert(paramGetData);
+            document.getElementById('txt_codigo_catastral').value = paramGetData;
+
+            var myLatLng=  new google.maps.LatLng(lat, lng);
+            map.setCenter(myLatLng);
+            map.setZoom(4);
+            map.setCenter(this.getPosition());
+            window.setTimeout(function() {map.setZoom(myLatLng);},3000);
+          });
+        }
+      </script>
+      <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAWSqmZmuMhkCKGX54RwL9TZXqpUhS7EEg&callback=loadMap">
+      </script>
+  </body>
+</html>
