@@ -6,6 +6,6 @@
 
  define('RUTA_APP', dirname(dirname(__FILE__)));
  //ruta url Ejemplo http://localhost/dropbox/php/mvc/
- define('RUTA_URL', 'http://localhost/dropbox/php/mvc-crud');
- define('NOMBRE_SITIO', 'MVC CRUD');
+ define('RUTA_URL', 'http://localhost/dropbox/php/mvc/aguapotable.apptics.com.ec');
+ define('NOMBRE_SITIO', 'Agua Potable');
 ?>

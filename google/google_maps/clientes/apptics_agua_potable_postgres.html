@@ -57,11 +57,7 @@
             //window.alert(paramGetData);
             document.getElementById('txt_codigo_catastral').value = paramGetData;
 
-            var myLatLng=  new google.maps.LatLng(lat, lng);
-            map.setCenter(myLatLng);
-            map.setZoom(4);
-            map.setCenter(this.getPosition());
-            window.setTimeout(function() {map.setZoom(myLatLng);},3000);
+            
           });
         }
       </script>
