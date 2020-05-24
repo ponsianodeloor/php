@@ -1,3 +1,7 @@
+<?php
+	session_start();
+	$peticion_ajax = false; //se ejecuta true cuando en al carpeta ajax ejecutamos una peticion
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -7,6 +11,7 @@
 	<link rel="stylesheet" href="<?php echo RUTA_URL ?>views/css/main.css">
 </head>
 <body>
+
 	<?php
 	include_once "controller/ViewsController.php";
 	$viewsController = new ViewsController();
