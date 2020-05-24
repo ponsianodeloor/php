@@ -49,7 +49,7 @@
  <section id="cd-timeline" class="cd-container">
               <div class="cd-timeline-block">
                   <div class="cd-timeline-img">
-                      <img src="assets/avatars/StudetMaleAvatar.png" alt="user-picture">
+                      <img src="<?php echo RUTA_URL."views/" ?>assets/avatars/StudetMaleAvatar.png" alt="user-picture">
                   </div>
                   <div class="cd-timeline-content">
                       <h4 class="text-center text-titles">1 - Name (Admin)</h4>
