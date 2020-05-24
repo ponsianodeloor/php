@@ -44,6 +44,31 @@
  		}
    ///metodos que sirven para desencriptar
 
+   protected function generarCodigoAleatorio($letra, $longitud){
+    for ($i=1; $i <$longitud ; $i++) {
+     $numero = rand(0,9);
+     $letra .= $numero;
+    }
+    return $letra.$num;
+   }
+
+   protected function limpiarCadena($campoFormulario){
+    $campoFormulario = trim($campoFormulario);
+    $campoFormulario = stripslashes($campoFormulario);
+    $cadena = str_ireplace('<script>', '', $campoFormulario); //str_ireplace($search, $replace, $subject);
+    $cadena = str_ireplace('</script>', '', $campoFormulario);
+    $cadena = str_ireplace('<script src>', '', $campoFormulario);
+    $cadena = str_ireplace('<script type=>', '', $campoFormulario);
+    $cadena = str_ireplace('SELECT * FROM', '', $campoFormulario);
+    $cadena = str_ireplace('DELETE FROM', '', $campoFormulario);
+    $cadena = str_ireplace('INSERT INTO', '', $campoFormulario);
+    $cadena = str_ireplace('--', '', $campoFormulario);
+    $cadena = str_ireplace('^', '', $campoFormulario);
+    $cadena = str_ireplace('[', '', $campoFormulario);
+    $cadena = str_ireplace(']', '', $campoFormulario);
+    $cadena = str_ireplace('==', '', $campoFormulario);
+    return $cadena;
+   }
  }
 
 ?>
