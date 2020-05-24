@@ -4,12 +4,12 @@
  <div class="full-box dashboard-sideBar-ct">
   <!--SideBar Title -->
   <div class="full-box text-uppercase text-center text-titles dashboard-sideBar-title">
-   <?php echo COMPANY; ?> <i class="zmdi zmdi-close btn-menu-dashboard visible-xs"></i>
+   company <i class="zmdi zmdi-close btn-menu-dashboard visible-xs"></i>
   </div>
   <!-- SideBar User info -->
   <div class="full-box dashboard-sideBar-UserInfo">
    <figure class="full-box">
-    <img src="<?php echo RUTA_URL; ?>views/assets/avatars/AdminMaleAvatar.png" alt="UserIcon">
+    <img src="assets/avatars/AdminMaleAvatar.png" alt="UserIcon">
     <figcaption class="text-center text-titles">User Name</figcaption>
    </figure>
    <ul class="full-box list-unstyled text-center">
