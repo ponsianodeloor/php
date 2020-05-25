@@ -1,7 +1,3 @@
-<?php
-	session_start();
-	$peticion_ajax = false; //se ejecuta true cuando en al carpeta ajax ejecutamos una peticion
-?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -13,14 +9,22 @@
 <body>
 
 	<?php
+	$peticion_ajax = false; //se ejecuta true cuando en al carpeta ajax ejecutamos una peticion
 	include_once "controller/ViewsController.php";
 	$viewsController = new ViewsController();
 	$views = $viewsController->obtenerVistasController();
 	?>
 
-	<?php if ($views == "login"): ?>
-		<?php include_once "views/contenidos/login_view.php"; ?>
+	<?php if ($views == "login" || $views == "404"): ?>
+		<?php
+		if ($views == "login") {
+			include_once "views/contenidos/login_view.php";
+		}else {
+			include_once "views/contenidos/404_view.php";
+		}
+		?>
 	<?php else: ?>
+		<?php session_start(); ?>
 		<!-- SideBar -->
 		<?php include_once "modulos/001_menu_izquierdo.php"; ?>
 		<!-- SideBar -->

@@ -23,12 +23,12 @@
     }else {
      $contenido = "login";
     }
-   }elseif($vistas=="login") {
+   }elseif($views=="login") {
     $contenido = "login";
    }elseif ($views == "index") {
     $contenido = "login";
    }else {
-    $contenido = "login";
+    $contenido = "404";
    }
    return $contenido;
   }
