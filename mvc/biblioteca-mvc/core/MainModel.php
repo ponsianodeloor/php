@@ -103,7 +103,7 @@
       icon: '".$datosArray['Tipo']."',
       confirmButtonText: 'Aceptar'
       }).then((result) => {
-       $('.form-ajax')[0].reset().
+       $('.FormularioAjax')[0].reset().
       }):
      </script>
      ";

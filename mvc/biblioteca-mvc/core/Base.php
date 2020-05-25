@@ -1,8 +1,8 @@
 <?php
- const SERVER = "";
- const DB = "";
- const USER = "";
- const PASS = "";
+ const SERVER = "localhost";
+ const DB = "biblioteca_publica";
+ const USER = "root";
+ const PASS = "ponsiano";
 
  //SGBD Sistema Gestor de Base de Datos
  const SGBD = "mysql:host=".SERVER.";dbname=".DB;
