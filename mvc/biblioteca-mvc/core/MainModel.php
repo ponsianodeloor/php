@@ -69,6 +69,46 @@
     $cadena = str_ireplace('==', '', $campoFormulario);
     return $cadena;
    }
+
+   protected function swetAlert($datosArray){
+    if ($datosArray['Alerta'] == "simple") {
+     $alerta = "
+     <script>
+       Swal(
+        '".$datosArray['Titulo']."',
+        '".$datosArray['Texto']."',
+        '".$datosArray['Tipo']."',
+       );
+     </script>
+     ";
+    }elseif ($datosArray['Alerta'] == "recarga") {
+     $alerta = "
+     <script>
+     Swal.fire({
+      title: '".$datosArray['Titulo']."',
+      text: '".$datosArray['Texto']."',
+      icon: '".$datosArray['Tipo']."',
+      confirmButtonText: 'Aceptar'
+      }).then((result) => {
+       location.reload();
+      }):
+     </script>
+     ";
+    }elseif ($datosArray['Alerta'] == "limpiar") {
+     $alerta = "
+     <script>
+     Swal.fire({
+      title: '".$datosArray['Titulo']."',
+      text: '".$datosArray['Texto']."',
+      icon: '".$datosArray['Tipo']."',
+      confirmButtonText: 'Aceptar'
+      }).then((result) => {
+       $('.form-ajax')[0].reset().
+      }):
+     </script>
+     ";
+    }
+   }
  }
 
 ?>
