@@ -1,6 +1,6 @@
 <?php
  if ($peticion_ajax) {
-  include_once "core/Base.php";
+  include_once "../core/Base.php";
  }else{
   include_once "core/Base.php";
  }
@@ -8,7 +8,7 @@
  /**
   *
   */
- class MainModel extends AnotherClass{
+ class MainModel{
 
   function __construct(){}
 
@@ -23,6 +23,52 @@
     $query->execute();
     return $query;
    }
+
+   protected function agregarCuenta($datos){
+    $query = MainModel::conectar()->prepare("INSERT INTO cuenta(
+                                              CuentaCodigo,
+                                              CuentaPrivilegio,
+                                              CuentaUsuario,
+                                              CuentaClave,
+                                              CuentaEmail,
+                                              CuentaEstado,
+                                              CuentaTipo,
+                                              CuentaGenero,
+                                              CuentaFoto
+                                             )
+                                             VALUES(
+                                              :CuentaCodigo,
+                                              :CuentaPrivilegio,
+                                              :CuentaUsuario,
+                                              :CuentaClave,
+                                              :CuentaEmail,
+                                              :CuentaEstado,
+                                              :CuentaTipo,
+                                              :CuentaGenero,
+                                              :CuentaFoto
+                                             )
+                                            ");
+   $query->bindParam(":CuentaCodigo", $datos['CuentaCodigo']);
+   $query->bindParam(":CuentaPrivilegio", $datos['CuentaPrivilegio']);
+   $query->bindParam(":CuentaUsuario", $datos['CuentaUsuario']);
+   $query->bindParam(":CuentaClave", $datos['CuentaClave']);
+   $query->bindParam(":CuentaEmail", $datos['CuentaEmail']);
+   $query->bindParam(":CuentaEstado", $datos['CuentaEstado']);
+   $query->bindParam(":CuentaTipo", $datos['CuentaTipo']);
+   $query->bindParam(":CuentaGenero", $datos['CuentaGenero']);
+   $query->bindParam(":CuentaFoto", $datos['CuentaFoto']);
+   $query->execute();
+   return $query;
+  }
+
+  protected function eliminarCuenta($CuentaCodigo){
+   $query = MainModel::conectar()->prepare("DELETE FROM cuenta WHERE CuentaCodigo == :CuentaCodigo");
+   $query->bindParam(":CuentaCodigo", $CuentaCodigo);
+   $query->execute();
+   return $query;
+  }
+
+  
 
    //metodos que sirven para desencriptar
    //procesa el valor y lo encripta
@@ -44,12 +90,12 @@
  		}
    ///metodos que sirven para desencriptar
 
-   protected function generarCodigoAleatorio($letra, $longitud){
+   protected function generarCodigoAleatorio($letra, $longitud, $numero){
     for ($i=1; $i <$longitud ; $i++) {
      $numero = rand(0,9);
      $letra .= $numero;
     }
-    return $letra.$num;
+    return $letra.$numero;
    }
 
    protected function limpiarCadena($campoFormulario){
@@ -74,7 +120,7 @@
     if ($datosArray['Alerta'] == "simple") {
      $alerta = "
      <script>
-       Swal(
+       swal(
         '".$datosArray['Titulo']."',
         '".$datosArray['Texto']."',
         '".$datosArray['Tipo']."',
@@ -84,32 +130,33 @@
     }elseif ($datosArray['Alerta'] == "recarga") {
      $alerta = "
      <script>
-     Swal.fire({
+     swal({
       title: '".$datosArray['Titulo']."',
       text: '".$datosArray['Texto']."',
       icon: '".$datosArray['Tipo']."',
       confirmButtonText: 'Aceptar'
-      }).then((result) => {
-       location.reload();
-      }):
+     }).then(function (){
+      location.reload();
+     });
      </script>
      ";
     }elseif ($datosArray['Alerta'] == "limpiar") {
      $alerta = "
      <script>
-     Swal.fire({
+     swal({
       title: '".$datosArray['Titulo']."',
       text: '".$datosArray['Texto']."',
-      icon: '".$datosArray['Tipo']."',
+      type: '".$datosArray['Tipo']."',
       confirmButtonText: 'Aceptar'
-      }).then((result) => {
-       $('.FormularioAjax')[0].reset().
-      }):
+     }).then(function (){
+       $('.FormularioAjax')[0].reset();
+      });
      </script>
      ";
     }
     return $alerta;
-   }
+   } //sweetAlert
+
  }
 
 ?>

@@ -49,7 +49,7 @@ $(document).ready(function(){
 				var metodo=form.attr('method');
 				var respuesta=form.children('.RespuestaAjax');
 
-				var msjError="<script>swal('Ocurrió un error inesperado','Por favor recargue la p·gina','error');</script>";
+				var msjError="<script>swal('Ocurrió un error inesperado','Por favor recargue la página','error');</script>";
 				var formdata = new FormData(this);
 
 
