@@ -68,7 +68,50 @@
    return $query;
   }
 
-  
+  protected function guardarBitacora($datos){
+   $query = MainModel::conectar()->prepare("INSERT INTO bitacora(
+                                                         BitacoraCodigo,
+                                                         BitacoraFecha,
+                                                         BitacoraHoraInicio,
+                                                         BitacoraHoraFinal,
+                                                         BitacoraTipo,
+                                                         BitacoraYear,
+                                                         CuentaCodigo
+                                                        )
+                                                        VALUES(
+                                                         :BitacoraCodigo,
+                                                         :BitacoraFecha,
+                                                         :BitacoraHoraInicio,
+                                                         :BitacoraHoraFinal,
+                                                         :BitacoraTipo,
+                                                         :BitacoraYear,
+                                                         :CuentaCodigo
+                                                        )");
+   $query->bindParam(":BitacoraCodigo", $datos['BitacoraCodigo']);
+   $query->bindParam(":BitacoraFecha", $datos['BitacoraFecha']);
+   $query->bindParam(":BitacoraHoraInicio", $datos['BitacoraHoraInicio']);
+   $query->bindParam(":BitacoraHoraFinal", $datos['BitacoraHoraFinal']);
+   $query->bindParam(":BitacoraTipo", $datos['BitacoraTipo']);
+   $query->bindParam(":BitacoraYear", $datos['BitacoraYear']);
+   $query->bindParam(":CuentaCodigo", $datos['CuentaCodigo']);
+   $query->execute();
+   return $query;
+  }
+  protected function actualizarBitacora($codigo, $hora){
+   $query = MainModel::conectar()->prepare("UPDATE bitacora
+                                            SET BitacoraHoraFinal = :BitacoraHoraFinal
+                                            WHERE BitacoraCodigo = :BitacoraCodigo
+                                           ");
+   $query->bindParam(":BitacoraHoraFinal", $datos['BitacoraHoraFinal']);
+   $query->bindParam(":BitacoraCodigo", $datos['BitacoraCodigo']);
+  }
+
+  protected function eliminarBitacora($CuentaCodigo){
+   $query = MainModel::conectar()->prepare("DELETE FROM bitacora WHERE CuentaCodigo = :CuentaCodigo");
+   $query->bindParam(":CuentaCodigo", $CuentaCodigo);
+   $query->execute();
+   return $query;
+  }
 
    //metodos que sirven para desencriptar
    //procesa el valor y lo encripta

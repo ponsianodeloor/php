@@ -5,9 +5,11 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<link rel="stylesheet" href="<?php echo RUTA_URL ?>views/css/main.css">
+
+
+
 </head>
 <body>
-
 	<?php
 	$peticion_ajax = false; //se ejecuta true cuando en al carpeta ajax ejecutamos una peticion
 	include_once "controller/ViewsController.php";
@@ -18,13 +20,15 @@
 	<?php if ($views == "login" || $views == "404"): ?>
 		<?php
 		if ($views == "login") {
+			//<!--====== Scripts --> // se incluye los script en la parte de arriba
+			include_once "modulos/003_script.php";
 			include_once "views/contenidos/login_view.php";
 		}else {
 			include_once "views/contenidos/404_view.php";
 		}
 		?>
 	<?php else: ?>
-		<?php session_start(); ?>
+		<?php session_start(['name'=>"SistemaBibliotecaPublica"]); ?>
 		<!-- SideBar -->
 		<?php include_once "modulos/001_menu_izquierdo.php"; ?>
 		<!-- SideBar -->
@@ -35,11 +39,11 @@
 
 		<!-- Content page -->
 		<?php include_once $views; ?>
-
+		<!--====== Scripts -->
+		<?php include_once "modulos/003_script.php"; ?>
 		</section>
 	<?php endif; ?>
 
-	<!--====== Scripts -->
-	<?php include_once "modulos/003_script.php"; ?>
+
 </body>
 </html>
