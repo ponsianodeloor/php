@@ -20,6 +20,22 @@ class Login extends MainModel{
    $query->execute();
    return $query;
  }
+
+ protected function cerrarSesionModel($datos){
+  if ($datos['CuentaUsuario'] != "" && $datos['token_usuario'] == $datos['token']) {
+   $actualizar_bitacora = MainModel::actualizarBitacora($datos);
+   if ($actualizar_bitacora->rowCount()==1) {
+    session_unset();
+    session_destroy();
+    $respuesta = "true";
+   }else{
+     $respuesta = "false"." " . $datos['usuario_codigo_bitacora_sbp']." ". $datos['hora'];
+   }
+  }else{
+   $respuesta = "false";
+  }
+  return $respuesta;
+ }
 }
 
 ?>

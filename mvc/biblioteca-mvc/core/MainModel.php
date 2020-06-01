@@ -97,13 +97,15 @@
    $query->execute();
    return $query;
   }
-  protected function actualizarBitacora($codigo, $hora){
+  protected function actualizarBitacora($datos){
    $query = MainModel::conectar()->prepare("UPDATE bitacora
                                             SET BitacoraHoraFinal = :BitacoraHoraFinal
                                             WHERE BitacoraCodigo = :BitacoraCodigo
                                            ");
-   $query->bindParam(":BitacoraHoraFinal", $datos['BitacoraHoraFinal']);
-   $query->bindParam(":BitacoraCodigo", $datos['BitacoraCodigo']);
+   $query->bindParam(":BitacoraHoraFinal", $datos['hora']);
+   $query->bindParam(":BitacoraCodigo", $datos['usuario_codigo_bitacora_sbp']);
+   $query->execute();
+   return $query;
   }
 
   protected function eliminarBitacora($CuentaCodigo){

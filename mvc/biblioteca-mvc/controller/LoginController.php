@@ -42,20 +42,21 @@ class LoginController extends Login
     "BitacoraHoraFinal"=>'Sin registro',
     "BitacoraTipo"=>$row['CuentaTipo'],
     "BitacoraYear"=>$yearSystem,
-    "CuentaCodigo"=>$row['CuentaCodigo'],
+    "CuentaCodigo"=>$row['CuentaCodigo']
    ];
 
    $insertarBitacora = MainModel::guardarBitacora($datosBitacora);
 
    if ($insertarBitacora->rowCount()>=1) {
     session_start(['name'=>"SistemaBibliotecaPublica"]);
-    $_SESSION['usuario_tipo_sbp']= $row['CuentaTipo'];
-    $_SESSION['usuario_sbp']= $row['CuentaUsuario'];
-    $_SESSION['usuario_privilegio_sbp']= $row['CuentaPrivilegio'];
-    $_SESSION['usuario_foto_sbp']= $row['CuentaFoto'];
-    $_SESSION['usuario_token_sbp']= md5(uniqid(mt_rand(), true));
-    $_SESSION['usuario_cuenta_codigo_sbp']= $row['CuentaCodigo'];
-    $_SESSION['usuario_codigo_bitacora_sbp']= $codigoBitacora;
+
+    $_SESSION['usuario_tipo_sbp'] = $row['CuentaTipo'];
+    $_SESSION['usuario_sbp'] = $row['CuentaUsuario'];
+    $_SESSION['usuario_privilegio_sbp'] = $row['CuentaPrivilegio'];
+    $_SESSION['usuario_foto_sbp'] = $row['CuentaFoto'];
+    $_SESSION['usuario_token_sbp'] = md5(uniqid(mt_rand(), true));
+    $_SESSION['usuario_cuenta_codigo_sbp'] = $row['CuentaCodigo'];
+    $_SESSION['usuario_codigo_bitacora_sbp'] = $codigoBitacora;
 
 
 
@@ -89,7 +90,27 @@ class LoginController extends Login
    ];
    return MainModel::swetAlert($alerta);
   }
+ } //iniciarSesion
+
+ public function forzarCerrarSesion(){
+  session_destroy();
+  return header("Location: ".RUTA_URL."login/" );
+ }//forzarCerrarSesion
+
+ public function cerrarSesion(){
+  session_start(['name'=>"SistemaBibliotecaPublica"]);
+  $token = MainModel::decryption($_GET['Token']);
+  $hora = date('h:i:s');
+  $datos = [
+   "CuentaUsuario"=>$_SESSION['usuario_sbp'],
+   "token_usuario"=>$_SESSION['usuario_token_sbp'],
+   "token"=>$token,
+   "usuario_codigo_bitacora_sbp"=>$_SESSION['usuario_codigo_bitacora_sbp'],
+   "hora"=>$hora
+  ];
+  return Login::cerrarSesionModel($datos);
  }
+
 }
 
 ?>

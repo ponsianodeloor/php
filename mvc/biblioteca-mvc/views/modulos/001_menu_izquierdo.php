@@ -9,7 +9,7 @@
   <!-- SideBar User info -->
   <div class="full-box dashboard-sideBar-UserInfo">
    <figure class="full-box">
-    <img src="<?php echo RUTA_URL; ?>views/assets/avatars/AdminMaleAvatar.png" alt="UserIcon">
+    <img src="<?php echo RUTA_URL; ?>views/assets/avatars/<?php echo $_SESSION['usuario_foto_sbp']; ?>" alt="UserIcon">
     <figcaption class="text-center text-titles">User Name</figcaption>
    </figure>
    <ul class="full-box list-unstyled text-center">
@@ -24,7 +24,7 @@
      </a>
     </li>
     <li>
-     <a href="#!" title="Salir del sistema" class="btn-exit-system">
+     <a href="<?php echo $loginController->encryption($_SESSION['usuario_token_sbp']); ?>" title="Salir del sistema" class="btn-exit-system">
       <i class="zmdi zmdi-power"></i>
      </a>
     </li>

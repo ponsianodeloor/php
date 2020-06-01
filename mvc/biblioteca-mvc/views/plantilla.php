@@ -28,7 +28,15 @@
 		}
 		?>
 	<?php else: ?>
-		<?php session_start(['name'=>"SistemaBibliotecaPublica"]); ?>
+		<?php
+			session_start(['name'=>"SistemaBibliotecaPublica"]);
+		 include_once "controller/LoginController.php";
+			$loginController = new LoginController;
+			if (!isset($_SESSION['usuario_token_sbp']) || !isset($_SESSION['usuario_sbp'])) {
+				$loginController->forzarCerrarSesion();
+			}
+		?>
+
 		<!-- SideBar -->
 		<?php include_once "modulos/001_menu_izquierdo.php"; ?>
 		<!-- SideBar -->
@@ -39,11 +47,19 @@
 
 		<!-- Content page -->
 		<?php include_once $views; ?>
+
+		</section>
 		<!--====== Scripts -->
 		<?php include_once "modulos/003_script.php"; ?>
-		</section>
+
+		<!-- ===== Script para cerrar sesion -->
+		<!--====== Scripts -->
+		<?php include_once "modulos/logout_script.php"; ?>
 	<?php endif; ?>
 
+	<script>
+	 $.material.init();
+	</script>
 
 </body>
 </html>
