@@ -149,17 +149,26 @@
   }
 
   //paginador de administradores
-  public function paginadorAdministradorController($pagina, $registros, $privilegio, $codigo){
+  public function paginadorAdministradorController($pagina, $registros, $privilegio, $codigo_session, $busqueda){
    $pagina = MainModel::limpiarCadena($pagina);
    $registros = MainModel::limpiarCadena($registros); //cuantos registros por pagina
    $privilegio = MainModel::limpiarCadena($privilegio);
-   $codigo = MainModel::limpiarCadena($codigo);
+   $codigo_session = MainModel::limpiarCadena($codigo_session);
+   $busqueda = MainModel::limpiarCadena($busqueda);
    $tabla = "";
 
    $pagina = (isset($pagina) && $pagina >0) ? (int) $pagina :1;
    $inicio = ($pagina > 0) ? (($pagina * $registros)-$registros) : 0;
 
-   $datos = MainModel::simpleQuery("SELECT SQL_CALC_FOUND_ROWS * FROM admin WHERE CuentaCodigo !='$codigo' AND id!='1' ORDER BY AdminApellido ASC LIMIT $inicio, $registros");
+   if (isset($busqueda) && $busqueda!= "") {
+    $sql = "SELECT SQL_CALC_FOUND_ROWS * FROM admin WHERE (CuentaCodigo !='$codigo_session' AND id!='1') AND (AdminNombre LIKE '%$busqueda%' OR AdminApellido LIKE '%$busqueda%') ORDER BY AdminApellido ASC LIMIT $inicio, $registros";
+    $pagina_url = "admin-search";
+   }else {
+    $sql = "SELECT SQL_CALC_FOUND_ROWS * FROM admin WHERE CuentaCodigo !='$codigo_session' AND id!='1' ORDER BY AdminApellido ASC LIMIT $inicio, $registros";
+    $pagina_url = "admin_list";
+   }
+
+   $datos = MainModel::simpleQuery($sql);
    $datos = $datos->fetchAll();
    $total = MainModel::simpleQuery("SELECT FOUND_ROWS()");
    $total = (int) $total->fetchColumn();
@@ -235,7 +244,7 @@
      $tabla.='
      <tr>
       <td colspan="8">
-       <a href="'.RUTA_URL.'admin_list/" class="btn btn-sm btn-info btn-raised">Haga clic para recargar </a>
+       <a href="'.RUTA_URL.$pagina_url.'/" class="btn btn-sm btn-info btn-raised">Haga clic para recargar </a>
       <td>
      </tr>
      ';
@@ -267,7 +276,7 @@
      ';
     }else{
      $tabla.='
-               <li><a href="'.RUTA_URL.'admin_list/'.($pagina-1).'/"><i class="zmdi zmdi-arrow-left"></i></a></li>
+               <li><a href="'.RUTA_URL.$pagina_url.'/'.($pagina-1).'/"><i class="zmdi zmdi-arrow-left"></i></a></li>
      ';
     }
 
@@ -275,11 +284,11 @@
     for ($i=1; $i <=$numeroPaginas ; $i++) {
      if ($pagina == $i) {
       $tabla.='
-                <li class="active"><a href="'.RUTA_URL.'admin_list/'.$i.'/">'.$i.'</a></li>
+                <li class="active"><a href="'.RUTA_URL.$pagina_url.'/'.$i.'/">'.$i.'</a></li>
       ';
      }else {
       $tabla.='
-                <li><a href="'.RUTA_URL.'admin_list/'.$i.'/">'.$i.'</a></li>
+                <li><a href="'.RUTA_URL.$pagina_url.'/'.$i.'/">'.$i.'</a></li>
       ';
      }
     }
@@ -291,7 +300,7 @@
      ';
     }else{
      $tabla.='
-               <li><a href="'.RUTA_URL.'admin_list/'.($pagina+1).'/"><i class="zmdi zmdi-arrow-right"></i></a></li>
+               <li><a href="'.RUTA_URL.$pagina_url.'/'.($pagina+1).'/"><i class="zmdi zmdi-arrow-right"></i></a></li>
      ';
     }
 

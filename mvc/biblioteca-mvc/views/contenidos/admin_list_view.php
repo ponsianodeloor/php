@@ -39,7 +39,7 @@
    <!-- tabla en html-->
    <?php
     $pagina = explode("/", $_GET['views']);
-    echo $administradorController->paginadorAdministradorController($pagina[1], 10, $_SESSION['usuario_privilegio_sbp'], $_SESSION['usuario_cuenta_codigo_sbp']);
+    echo $administradorController->paginadorAdministradorController($pagina[1], 10, $_SESSION['usuario_privilegio_sbp'], $_SESSION['usuario_cuenta_codigo_sbp'], "");
    ?>
 
   </div>
