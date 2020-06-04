@@ -122,36 +122,44 @@
        </fieldset>
        <br>
        <fieldset>
+        <?php
+         include_once 'controller/AdministradorController.php';
+         $administradorController = new AdministradorController;
+        ?>
         <legend><i class="zmdi zmdi-star"></i> &nbsp; Nivel de privilegios</legend>
         <div class="container-fluid">
          <div class="row">
           <div class="col-xs-12 col-sm-6">
            <p class="text-left">
-                           <div class="label label-success">Nivel 1</div> Control total del sistema
-                       </p>
-                       <p class="text-left">
-                           <div class="label label-primary">Nivel 2</div> Permiso para registro y actualización
-                       </p>
-                       <p class="text-left">
-                           <div class="label label-info">Nivel 3</div> Permiso para registro
-                       </p>
+               <div class="label label-success">Nivel 1</div> Control total del sistema
+           </p>
+           <p class="text-left">
+               <div class="label label-primary">Nivel 2</div> Permiso para registro y actualización
+           </p>
+           <p class="text-left">
+               <div class="label label-info">Nivel 3</div> Permiso para registro
+           </p>
           </div>
           <div class="col-xs-12 col-sm-6">
         <div class="radio radio-primary">
          <label>
-          <input type="radio" name="optPrivilegio" id="optionsRadios1" value="1">
+          <?php if ($_SESSION['usuario_privilegio_sbp']==1): ?>
+          <input type="radio" name="optPrivilegio" id="optionsRadios1" value="<?php echo $administradorController->encryption(1); ?>">
           <i class="zmdi zmdi-star"></i> &nbsp; Nivel 1
+          <?php endif; ?>
          </label>
         </div>
         <div class="radio radio-primary">
          <label>
-          <input type="radio" name="optPrivilegio" id="optionsRadios2" value="2">
+          <?php if ($_SESSION['usuario_privilegio_sbp']<=2): ?>
+          <input type="radio" name="optPrivilegio" id="optionsRadios2" value="<?php echo $administradorController->encryption(2); ?>">
           <i class="zmdi zmdi-star"></i> &nbsp; Nivel 2
+          <?php endif; ?>
          </label>
         </div>
         <div class="radio radio-primary">
          <label>
-          <input type="radio" name="optPrivilegio" id="optionsRadios3" value="3" checked="">
+          <input type="radio" name="optPrivilegio" id="optionsRadios3" value="<?php echo $administradorController->encryption(3); ?>" checked="">
           <i class="zmdi zmdi-star"></i> &nbsp; Nivel 3
          </label>
         </div>

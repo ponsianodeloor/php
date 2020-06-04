@@ -62,7 +62,7 @@
   }
 
   protected function eliminarCuenta($CuentaCodigo){
-   $query = MainModel::conectar()->prepare("DELETE FROM cuenta WHERE CuentaCodigo == :CuentaCodigo");
+   $query = MainModel::conectar()->prepare("DELETE FROM cuenta WHERE CuentaCodigo = :CuentaCodigo");
    $query->bindParam(":CuentaCodigo", $CuentaCodigo);
    $query->execute();
    return $query;

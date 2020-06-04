@@ -39,6 +39,13 @@ class Administrador extends MainModel{
  return $query;
  }
 
+ protected function eliminarAdministradorModel($CodigoCuentaDelete){
+  $query = MainModel::conectar()->prepare("DELETE FROM admin WHERE CuentaCodigo = :CuentaCodigo");
+  $query->bindParam(":CuentaCodigo", $CodigoCuentaDelete);
+  $query->execute();
+  return $query;
+ }
+
 }
 
 ?>

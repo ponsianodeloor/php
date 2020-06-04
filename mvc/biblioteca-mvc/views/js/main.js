@@ -11,7 +11,7 @@ $(document).ready(function(){
 			SubMenu.addClass('show-sideBar-SubMenu');
 		}
 	});
-	
+
 	$('.btn-menu-dashboard').on('click', function(e){
 		e.preventDefault();
 		var body=$('.dashboard-contentPage');
@@ -43,9 +43,9 @@ $(document).ready(function(){
 				if(tipo==="save"){
 								textoAlerta="Los datos que enviaras quedaran almacenados en el sistema";
 				}else if(tipo==="delete"){
-								textoAlerta="Los datos ser·n eliminados completamente del sistema";
+								textoAlerta="Los datos sern eliminados completamente del sistema";
 				}else if(tipo==="update"){
-					textoAlerta="Los datos del sistema ser·n actualizados";
+					textoAlerta="Los datos del sistema sern actualizados";
 				}else{
 								textoAlerta="Quieres realizar la operación solicitada";
 				}

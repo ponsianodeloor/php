@@ -1,15 +1,23 @@
 <?php
  $peticion_ajax = true;
  include_once "../core/config.php";
- if (isset($_POST['txt_cedula'])) {
+ if (isset($_POST['txt_cedula']) || isset($_POST['CuentaCodigo_delete'])) {
+
   include_once "../controller/AdministradorController.php";
   $administradorController = new AdministradorController();
-  echo $administradorController->agregarAdministradorController();
-  if (isset($txt_nombre) && isset($txt_apellido) && isset($txt_usuario)) {
 
+
+  if (isset($_POST['txt_cedula']) && isset($_POST['txt_apellido']) && isset($_POST['txt_usuario'])) {
+   echo $administradorController->agregarAdministradorController();
   }
+
+  if (isset($_POST['CuentaCodigo_delete']) && isset($_POST['privilegio_admin'])) {
+   echo $administradorController->eliminarAdministradorController();
+  }
+
+
  }else {
-  session_start();
+  session_start(['name'=>"SistemaBibliotecaPublica"]);
   session_destroy();
 
   echo '
@@ -17,6 +25,6 @@
     window.location.href = "'.RUTA_URL.'login/"
    </script>
   ';
-  
+
  }
 ?>
