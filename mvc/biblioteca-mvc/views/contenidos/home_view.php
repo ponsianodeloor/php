@@ -1,3 +1,8 @@
+<?php
+ if ($_SESSION['usuario_tipo_sbp']!="Administrador") {
+  echo $login->forzarCerrarSesion();
+ }
+?>
 <!-- Content page -->
 <div class="container-fluid">
  <div class="page-header">
@@ -5,6 +10,11 @@
  </div>
 </div>
 <div class="full-box text-center" style="padding: 30px 10px;">
+ <?php
+  include_once "controller/AdministradorController.php";
+  $administradorController = new AdministradorController();
+  $consultarAdministrador = $administradorController->consultaAdministradorController("Conteo", 0);
+ ?>
  <article class="full-box tile">
   <div class="full-box tile-title text-center text-titles text-uppercase">
    Admin
@@ -13,7 +23,7 @@
    <i class="zmdi zmdi-account"></i>
   </div>
   <div class="full-box tile-number text-titles">
-   <p class="full-box">7</p>
+   <p class="full-box"><?php echo $consultarAdministrador->rowCount(); ?></p>
    <small>Register</small>
   </div>
  </article>

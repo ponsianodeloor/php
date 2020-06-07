@@ -174,6 +174,7 @@
    $total = (int) $total->fetchColumn();
 
    $numeroPaginas = ceil($total/$registros);
+   echo $privilegio;
    $tabla.='<div class="table-responsive">
              <table class="table table-hover text-center">
               <thead>
@@ -377,7 +378,85 @@
     ];
    }
    return MainModel::swetAlert($alerta);
+  }//eliminarAdministradorController(){}
+
+  public function consultaAdministradorController($tipo, $CuentaCodigo) {
+   $tipo = MainModel::limpiarCadena($tipo);
+   $CuentaCodigo = MainModel::decryption($CuentaCodigo);
+   return Administrador::consultarAdministradorModel($tipo, $CuentaCodigo);
   }
+
+  public function actualizarAdminController(){
+   $txt_cedula = MainModel::limpiarCadena($_POST['txt_cedula']);
+   $txt_nombre = MainModel::limpiarCadena($_POST['txt_nombre']);
+   $txt_apellido = MainModel::limpiarCadena($_POST['txt_apellido']);
+   $txt_telefono = MainModel::limpiarCadena($_POST['txt_telefono']);
+   $txt_direccion = MainModel::limpiarCadena($_POST['txt_direccion']);
+
+   $hdd_admin_cuenta_codigo = MainModel::decryption($_POST['hdd_admin_cuenta_codigo']);
+
+   $dataAD = [
+    'AdminDNI'=>$txt_cedula,
+    'AdminNombre'=> $txt_nombre,
+    'AdminApellido'=> $txt_apellido,
+    'AdminTelefono'=> $txt_telefono,
+    'AdminDireccion'=> $txt_direccion,
+    'CuentaCodigo'=>$hdd_admin_cuenta_codigo
+   ];
+   $guardarAdmin = Administrador::actualizarAdminModel($dataAD);
+   if ($guardarAdmin->rowCount()==1) {
+    $alerta = [
+     "Alerta"=>"limpiar",
+     "Titulo"=>"Administrador Actualizado",
+     "Texto"=>"El administrador se ha actualizado correctamente",
+     "Tipo"=>"success"
+    ];
+   }else {
+    $alerta = [
+     "Alerta"=>"simple",
+     "Titulo"=>"Ocurrió un error",
+     "Texto"=>"No hemos acualizado al administrador",
+     "Tipo"=>"error"
+    ];
+   }
+   return MainModel::swetAlert($alerta);
+  }//actualizarAdminController()
+
+  public function actualizarCuentaController(){
+   $txt_cedula = MainModel::limpiarCadena($_POST['txt_cedula']);
+   $txt_nombre = MainModel::limpiarCadena($_POST['txt_nombre']);
+   $txt_apellido = MainModel::limpiarCadena($_POST['txt_apellido']);
+   $txt_telefono = MainModel::limpiarCadena($_POST['txt_telefono']);
+   $txt_direccion = MainModel::limpiarCadena($_POST['txt_direccion']);
+
+   $hdd_admin_cuenta_codigo = MainModel::decryption($_POST['hdd_admin_cuenta_codigo']);
+
+   $dataAD = [
+    'AdminDNI'=>$txt_cedula,
+    'AdminNombre'=> $txt_nombre,
+    'AdminApellido'=> $txt_apellido,
+    'AdminTelefono'=> $txt_telefono,
+    'AdminDireccion'=> $txt_direccion,
+    'CuentaCodigo'=>$hdd_admin_cuenta_codigo
+   ];
+   $guardarAdmin = Administrador::actualizarAdminModel($dataAD);
+   if ($guardarAdmin->rowCount()==1) {
+    $alerta = [
+     "Alerta"=>"limpiar",
+     "Titulo"=>"Administrador Actualizado",
+     "Texto"=>"El administrador se ha actualizado correctamente",
+     "Tipo"=>"success"
+    ];
+   }else {
+    $alerta = [
+     "Alerta"=>"simple",
+     "Titulo"=>"Ocurrió un error",
+     "Texto"=>"No hemos acualizado al administrador",
+     "Tipo"=>"error"
+    ];
+   }
+   return MainModel::swetAlert($alerta);
+  }//actualizarAdminController()
  } //class AdministradorController
 
 

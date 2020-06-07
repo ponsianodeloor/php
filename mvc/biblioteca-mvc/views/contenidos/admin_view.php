@@ -1,3 +1,8 @@
+<?php
+if ($_SESSION['usuario_tipo_sbp']!="Administrador") {
+ echo $login->forzarCerrarSesion();
+}
+?>
 <!-- Content page -->
 <div class="container-fluid">
  <div class="page-header">

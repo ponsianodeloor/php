@@ -12,14 +12,21 @@
     <img src="<?php echo RUTA_URL; ?>views/assets/avatars/<?php echo $_SESSION['usuario_foto_sbp']; ?>" alt="UserIcon">
     <figcaption class="text-center text-titles">User Name</figcaption>
    </figure>
+   <?php
+    if ($_SESSION['usuario_tipo_sbp'] = "Administrador") {
+     $tipo = "admin";
+    }else {
+     $tipo = "user ";
+    }
+   ?>
    <ul class="full-box list-unstyled text-center">
     <li>
-     <a href="<?php echo RUTA_URL; ?>my-data/" title="Mis datos">
+     <a href="<?php echo RUTA_URL; ?>my-data/<?php echo $tipo; ?>/<?php echo MainModel::encryption($_SESSION['usuario_cuenta_codigo_sbp']); ?>/" title="Mis datos">
       <i class="zmdi zmdi-account-circle"></i>
      </a>
     </li>
     <li>
-     <a href="<?php echo RUTA_URL; ?>my-account/" title="Mi cuenta">
+     <a href="<?php echo RUTA_URL; ?>my-account/<?php echo $tipo; ?>/<?php echo MainModel::encryption($_SESSION['usuario_cuenta_codigo_sbp']); ?>/" title="Mi cuenta">
       <i class="zmdi zmdi-settings"></i>
      </a>
     </li>

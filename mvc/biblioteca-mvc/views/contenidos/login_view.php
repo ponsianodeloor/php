@@ -4,12 +4,12 @@
   <p class="text-center text-muted text-uppercase">Inicia sesión con tu cuenta</p>
   <div class="form-group label-floating">
     <label class="control-label" for="txt_user">Usuario</label>
-    <input class="form-control" id="txt_user" type="text" name="txt_user" required = "">
+    <input class="form-control" id="txt_user" type="text" name="txt_user" required = "" style="color:#FFF;">
     <p class="help-block">Escribe tú nombre de usuario</p>
   </div>
   <div class="form-group label-floating">
     <label class="control-label" for="txt_pass">Contraseña</label>
-    <input class="form-control" id="txt_pass" name="txt_pass" type="password" required = "">
+    <input class="form-control" id="txt_pass" name="txt_pass" type="password" required = "" style="color:#FFF;">
     <p class="help-block">Escribe tú contraseña</p>
   </div>
   <div class="form-group text-center">

@@ -1,7 +1,7 @@
 <?php
  //mapear la url ingresada en el navegador 1 controlador 2 metodo 3 parametro ejemplo /articulos/actualizar/4
  class Core{
-   
+
   protected $controladorActual = 'users';
   protected $metodoActual = 'index';
   protected $parametros = [];
@@ -35,11 +35,13 @@
 
    //obtener los $parametros
    $this->parametros = $url?array_values($url):[];
+
    //llamar callback con parametros array
+
    call_user_func_array([$this->controladorActual, $this->metodoActual], $this->parametros);
-
-
+   
   }
+
 
   public function getUrl(){
     //echo $_GET['url'];

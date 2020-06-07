@@ -1,9 +1,9 @@
 <?php
  $peticion_ajax = true;
- include_once "../core/config.php";
- if (isset($_POST['txt_cedula']) || isset($_POST['CuentaCodigo_delete'])) {
+ require_once "../core/config.php";
+ if (isset($_POST['txt_cedula']) || isset($_POST['CuentaCodigo_delete']) || isset($_POST['hdd_admin_cuenta_codigo'])) {
 
-  include_once "../controller/AdministradorController.php";
+  require_once "../controller/AdministradorController.php";
   $administradorController = new AdministradorController();
 
 
@@ -13,6 +13,10 @@
 
   if (isset($_POST['CuentaCodigo_delete']) && isset($_POST['privilegio_admin'])) {
    echo $administradorController->eliminarAdministradorController();
+  }
+
+  if (isset($_POST['hdd_admin_cuenta_codigo'])) {
+   echo $administradorController->actualizarAdminController();
   }
 
 
