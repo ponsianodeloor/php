@@ -1,0 +1,18 @@
+{
+	"name": "envms/fluent-test",
+	"description": "A library for testing FluentPDO with mock data and classes",
+	"keywords": ["fluentpdo", "test", "library"],
+	"homepage": "https://github.com/envms/fluent-test",
+	"license": ["Apache-2.0", "GPL-2.0+"],
+	"authors": [
+		{
+			"name": "envms",
+			"homepage": "http://env.ms"
+		}
+	],
+	"autoload": {
+		"psr-4": {
+			"Envms\\FluentTest\\": "src/"
+		}
+	}
+}

@@ -1,0 +1,7 @@
+{
+    "require": {
+        "phpunit/phpunit": "^7.5",
+        "envms/fluent-test": "^1.0",
+        "lichtner/fluentpdo": "^2.1"
+    }
+}
