@@ -30,4 +30,10 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'google' => [
+    'client_id' => '590385855973-9teq4qrgrfhs2gp73qp17bep83hie46t.apps.googleusercontent.com',
+    'client_secret' => 'BE6PqipdKp2f-CwMWFIqQPMp',
+    'redirect' => 'http://laravel.apptics.com.ec/callback/google',
+  ],
+
 ];
