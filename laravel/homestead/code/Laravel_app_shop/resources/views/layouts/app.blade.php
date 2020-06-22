@@ -31,6 +31,35 @@
       </div>
       <div class="collapse navbar-collapse">
         <ul class="navbar-nav ml-auto">
+          @guest
+          @if (Route::has('register'))
+          <li class="nav-item">
+            <a class="nav-link" href="{{url('register')}}">
+              <i class="material-icons">unarchive</i> Registro
+            </a>
+          </li>
+          @endif
+          @else
+          <li class="dropdown nav-item">
+            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+              <i class="material-icons">apps</i> Usuario
+            </a>
+            <div class="dropdown-menu dropdown-with-icons">
+              <a href="../index.html" class="dropdown-item">
+                <i class="material-icons">layers</i> All Components
+              </a>
+
+              <a href="{{ route('logout') }}" class="dropdown-item"
+                 onclick="event.preventDefault();
+                               document.getElementById('logout-form').submit();">
+                  <i class="material-icons">login</i> Logout
+              </a>
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                  @csrf
+              </form>
+            </div>
+          </li>
+          @endguest
           <li class="dropdown nav-item">
             <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
               <i class="material-icons">apps</i> Components
@@ -44,11 +73,7 @@
               </a>
             </div>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="https://www.creative-tim.com/product/material-kit-pro" target="_blank">
-              <i class="material-icons">unarchive</i> Upgrade to PRO
-            </a>
-          </li>
+
           <li class="nav-item">
             <a class="nav-link" rel="tooltip" title="" data-placement="bottom" href="https://twitter.com/CreativeTim" target="_blank" data-original-title="Follow us on Twitter" rel="nofollow">
               <i class="fa fa-twitter"></i>
