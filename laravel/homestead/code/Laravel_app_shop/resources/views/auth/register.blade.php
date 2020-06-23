@@ -13,7 +13,7 @@
             <div class="card-header card-header-primary text-center">
               <h4 class="card-title">Registro</h4>
               <div class="social-line">
-                <a href="#pablo" class="btn btn-just-icon btn-link">
+                <a href="{{ url('/auth/redirect/facebook') }}" class="btn btn-just-icon btn-link">
                   <i class="fa fa-facebook-square"></i>
                 </a>
                 <a href="#pablo" class="btn btn-just-icon btn-link">
@@ -93,14 +93,6 @@
                 @enderror
               </div>
 
-            </div>
-            <div class="form-group row mb-0">
-             <div class="col-md-8 offset-md-4">
-              <!--
-              <a href="{{ url('/auth/redirect/google') }}" class="btn btn-primary"><i class="fa fa-google"></i> Google</a>
-             -->
-             
-             </div>
             </div>
             <!-- <div class="footer text-center"> -->
             <div class="text-center">
