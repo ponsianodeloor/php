@@ -33,7 +33,13 @@ return [
     'google' => [
     'client_id' => '590385855973-9teq4qrgrfhs2gp73qp17bep83hie46t.apps.googleusercontent.com',
     'client_secret' => 'BE6PqipdKp2f-CwMWFIqQPMp',
-    'redirect' => 'http://laravel.apptics.com.ec/callback/google',
-  ],
+    'redirect' => 'http://profesor.apptics.com.ec/callback/google',
+    ],
+
+    'facebook' => [
+    'client_id' => '571560493541721',
+    'client_secret' => '1121cf192f017a46ad77eb9a243979af',
+    'redirect' => 'http://profesor.apptics.com.ec/auth/facebook/callback'
+    ]
 
 ];

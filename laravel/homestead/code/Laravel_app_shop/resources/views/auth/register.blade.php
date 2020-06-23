@@ -19,7 +19,7 @@
                 <a href="#pablo" class="btn btn-just-icon btn-link">
                   <i class="fa fa-twitter"></i>
                 </a>
-                <a href="#pablo" class="btn btn-just-icon btn-link">
+                <a href="{{ url('/auth/redirect/google') }}" class="btn btn-just-icon btn-link">
                   <i class="fa fa-google-plus"></i>
                 </a>
               </div>
@@ -96,7 +96,10 @@
             </div>
             <div class="form-group row mb-0">
              <div class="col-md-8 offset-md-4">
+              <!--
               <a href="{{ url('/auth/redirect/google') }}" class="btn btn-primary"><i class="fa fa-google"></i> Google</a>
+             -->
+             
              </div>
             </div>
             <!-- <div class="footer text-center"> -->
