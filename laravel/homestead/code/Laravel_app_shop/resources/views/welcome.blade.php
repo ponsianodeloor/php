@@ -59,9 +59,38 @@
       </div>
     </div>
     <div class="section text-center">
-      <h2 class="title">Here is our team</h2>
+      <h2 class="title">Productos disponibles</h2>
       <div class="team">
         <div class="row">
+         <?php
+          //foreach ($products as $row_products) {
+           //echo $row_products['nombre'];
+          //}
+         ?>
+         <?php foreach ($products as $row_products): ?>
+          <div class="col-md-4">
+            <div class="team-player">
+              <div class="card card-plain">
+                <div class="col-md-6 ml-auto mr-auto">
+                  <img src="{{asset('img/faces/avatar.jpg')}}" alt="Thumbnail Image" class="img-raised rounded-circle img-fluid">
+                </div>
+                <h4 class="card-title">{{$row_products['nombre']}}
+                  <br>
+                  <small class="card-description text-muted">Model</small>
+                </h4>
+                <div class="card-body">
+                  <p class="card-description">{{$row_products['descripcion']}}</p>
+                </div>
+                <div class="card-footer justify-content-center">
+                  <a href="#pablo" class="btn btn-link btn-just-icon"><i class="fa fa-twitter"></i></a>
+                  <a href="#pablo" class="btn btn-link btn-just-icon"><i class="fa fa-instagram"></i></a>
+                  <a href="#pablo" class="btn btn-link btn-just-icon"><i class="fa fa-facebook-square"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+         <?php endforeach; ?>
+          <!--
           <div class="col-md-4">
             <div class="team-player">
               <div class="card card-plain">
@@ -127,6 +156,7 @@
               </div>
             </div>
           </div>
+         -->
         </div>
       </div>
     </div>

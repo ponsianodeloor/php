@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Product;
 
 class TestController extends Controller
 {
@@ -11,5 +12,10 @@ class TestController extends Controller
      $b = 6;
      $c = $a + $b;
      return "Se suma $a + $b = $c";
+    }
+
+    public function welcome(){
+     $products = Product::all();
+     return view('welcome', compact("products"));
     }
 }

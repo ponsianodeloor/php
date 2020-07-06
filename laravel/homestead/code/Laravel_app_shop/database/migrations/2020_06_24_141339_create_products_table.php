@@ -17,7 +17,7 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->string('nombre');
             $table->string('descripcion');
-            $table->string('imagen');
+            $table->text('imagen');
             $table->text('descripcion_larga'); //si la cadena es superior a 255 se recomienda text
             $table->float('precio');
             $table->float('precio_compra');
