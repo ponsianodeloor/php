@@ -8,6 +8,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/products', 'ProductController@index');
+
 Route::get('/suma', 'TestController@suma');
 Route::get('/', 'TestController@welcome');
 
