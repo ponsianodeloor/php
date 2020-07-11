@@ -7,7 +7,7 @@
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-    Material Kit by Creative Tim
+    @yield('title', 'App Shop')
   </title>
   <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
@@ -16,7 +16,7 @@
   <!-- CSS Files -->
   <link href="{{asset('css/material-kit.css')}}" rel="stylesheet" />
 </head>
-<body class="@yield('body-class')"> 
+<body class="@yield('body-class')">
   <script>
     window.fbAsyncInit = function() {
       FB.init({

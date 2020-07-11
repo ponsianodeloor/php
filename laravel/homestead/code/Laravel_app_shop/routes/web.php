@@ -8,7 +8,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/products', 'ProductsController@index');
+//Route::get('/products', 'ProductsController@index');
+Route::resource('admin/products', 'ProductsController');
 
 Route::get('/suma', 'TestController@suma');
 Route::get('/', 'TestController@welcome');
