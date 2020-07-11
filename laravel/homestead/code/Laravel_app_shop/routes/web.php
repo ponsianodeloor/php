@@ -8,7 +8,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/products', 'ProductController@index');
+Route::get('/products', 'ProductsController@index');
 
 Route::get('/suma', 'TestController@suma');
 Route::get('/', 'TestController@welcome');
