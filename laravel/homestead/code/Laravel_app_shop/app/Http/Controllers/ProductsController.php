@@ -4,48 +4,80 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Category;
 use App\Product;
 
 class ProductsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
+    public function index(){
       $productos = Product::all();
-      return view('products.index', compact("productos"));
+      return view('admin.products.index', compact("productos"));
     }
 
-    public function create()
-    {
-        return view('admin.products.create');
+    public function create(){
+        $category = Category::all('nombre');
+        return view('admin.products.create', compact("category"));
     }
 
-    public function store(Request $request)
-    {
-        //
+    public function store(Request $request){
+     /*
+     $entrada = $request->all();
+     if ($archivo = $request->file('imagen')) {
+      $nombre = $archivo->getClientOriginalName();
+      $archivo->move('img', $nombre);
+      $entrada['imagen']=$nombre;
+     }
+     Product::create($entrada);
+     return redirect( "/admin/products");
+     */
+
+     $producto = new Product;
+     $producto->nombre = $request->nombre;
+     $producto->descripcion = $request->descripcion;
+
+     if ($archivo = $request->file('imagen')) {
+      $nombre_archivo = $archivo->getClientOriginalName();
+      $archivo->move('img', $nombre_archivo);
+      $producto->imagen = $nombre_archivo;
+     }else {
+      $producto->imagen = "";
+     }
+
+     $producto->descripcion_larga = $request->descripcion_larga;
+     $producto->precio = $request->precio;
+     $producto->precio_compra = $request->precio_compra;
+     $producto->precio_venta_unitario = $request->precio_venta_unitario;
+     $producto->precio_venta_al_mayor = $request->precio_venta_al_mayor;
+     $producto->category_id = $request->category_id;
+     $producto->save();
+     return redirect( "/admin/products");
     }
 
-    public function show($id)
-    {
-        //
+    public function show($id){
+     $producto = Product::findOrFail($id);
+     return view("admin.products.show", compact("producto"));
     }
 
-    public function edit($id)
-    {
-        //
+    public function edit($id){
+      $producto = Product::find($id);
+      $category = Category::pluck('nombre','id');
+      return view('admin.products.edit', compact("producto"), compact("category"));
     }
 
-    public function update(Request $request, $id)
-    {
-        //
+    public function update(Request $request, $id){
+      $producto = Product::findOrFail($id);
+      if ($archivo = $request->file('imagen')) {
+       $nombre = $archivo->getClientOriginalName();
+       $archivo->move('img', $nombre);
+       $producto->imagen = $nombre_archivo;
+      }
+      $producto->update($request->all());
+      return redirect( "/admin/products");
     }
 
-    public function destroy($id)
-    {
-        //
+    public function destroy($id){
+      $producto = Product::findOrFail($id);
+      $producto->delete();
+      return redirect( "/admin/products");
     }
 }

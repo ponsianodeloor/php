@@ -1,5 +1,6 @@
 {
     "require": {
-        "laravel/ui": "^2.0"
+        "laravel/ui": "^2.0",
+        "laravelcollective/html"
     }
 }

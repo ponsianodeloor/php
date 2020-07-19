@@ -1,6 +1,6 @@
 @extends('../../layouts.app')
 
-@section('title', 'Crear Producto')
+@section('title', 'Editar Producto')
 @section('body-class', 'landing-page sidebar-collapse')
 
 @section('content')
@@ -11,92 +11,71 @@
   <div class="container">
     <div class="section section-contacts">
       <div class="row">
-
         <div class="col-md-8 ml-auto mr-auto">
-          <h2 class="text-center title">Crear Producto</h2>
-          <h4 class="text-center description">Contactanos.</h4>
-          <?php echo Form::open(['action' => 'ProductsController@store', 'method' => 'post', 'files'=>'true']); ?>
+
+           <h2 class="text-center title">Editar Producto {{$producto->nombre}}</h2>
+           <h4 class="text-center description">Contactanos.</h4>
            <div class="row">
             <div class="col-md-6">
              <div class="form-group">
-              <label class="bmd-label-floating">Categoria</label>
-              <?php
-              foreach ($category as $row_category) {
-               $category_select[] = $row_category['nombre'];
-              }
-              echo Form::select('category_id', $category_select, '2', ['class'=>'form-control']);
-              ?>
+              <label class="bmd-label-floating">Categoria <strong>{{$producto->category->nombre}}</strong> </label>
+
              </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
-               <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                <span class="btn btn-raised btn-round btn-rose btn-file">
-                   <span class="fileinput-new">Select image
-                    <?php echo Form::file('imagen'); ?>
-                   </span>
-                </span>
-               </div>
+
               </div>
             </div>
 
 
               <div class="col-md-6">
                 <div class="form-group">
-                  <label class="bmd-label-floating">Product Name</label>
-                  <?php echo Form::text('nombre', '', ['class' => 'form-control']); ?>
+                  <label class="bmd-label-floating">Product Name <strong>{{$producto->nombre}}</strong> </label>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <label class="bmd-label-floating">Descripcion</label>
-                  <?php echo Form::text('descripcion', '', ['class' => 'form-control']); ?>
+                  <label class="bmd-label-floating">Descripcion <strong>{{$producto->descripcion}}</strong> </label>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <label class="bmd-label-floating">Precio</label>
-                  <?php echo Form::text('precio', '', ['class' => 'form-control']); ?>
+                  <label class="bmd-label-floating">Precio {{$producto->precio}} </label>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <label class="bmd-label-floating">Precio Compra</label>
-                  <?php echo Form::text('precio_compra', '', ['class' => 'form-control']); ?>
+                  <label class="bmd-label-floating">Precio Compra <strong>{{$producto->precio_compra}}</strong> </label>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <label class="bmd-label-floating">Precio Valor Unitario</label>
-                  <?php echo Form::text('precio_venta_unitario', '', ['class' => 'form-control']); ?>
+                  <label class="bmd-label-floating">Precio Valor Unitario <strong>{{$producto->precio_venta_unitario}}</strong> </label>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <label class="bmd-label-floating">Precio al por mayor</label>
-                  <?php echo Form::text('precio_venta_al_mayor', '', ['class' => 'form-control']); ?>
+                  <label class="bmd-label-floating">Precio al por mayor <strong>{{$producto->precio_venta_al_mayor}}</strong> </label>
                 </div>
               </div>
 
            </div>
            <div class="form-group">
              <label for="exampleMessage" class="bmd-label-floating">Descripcion completa</label>
-             {!! Form::textarea('descripcion_larga', null, ['class'=>'form-control', 'rows'=>'4']) !!}
+             <label for="exampleMessage" class="bmd-label-floating"><strong>{{$producto->descripcion_larga}}</strong> </label>
            </div>
-           <div class="row">
-             <div class="col-md-4 ml-auto mr-auto text-center">
-               <button class="btn btn-primary btn-raised">
-                 Guardar
-               </button>
-             </div>
-           </div>
-           {{csrf_field()}}
-          <?php echo Form::close(); ?>
-          <form class="contact-form">
+           {!! Form::model($producto, ['method'=>'DELETE', 'action'=>['ProductsController@update', $producto->id]]) !!}
+            {{csrf_field()}}
+            <input type="hidden" name="_method" value="DELETE">
             <div class="row">
+              <div class="col-md-4 ml-auto mr-auto text-center">
+                <button class="btn btn-primary btn-raised">
+                  Eliminar
+                </button>
+              </div>
             </div>
-
-          </form>
+           {!! Form::close() !!}
         </div>
       </div>
     </div>
