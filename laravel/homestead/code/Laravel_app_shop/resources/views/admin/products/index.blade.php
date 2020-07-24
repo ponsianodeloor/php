@@ -153,6 +153,7 @@
    </div>
    <div class="card-body">
     <div class="table-responsive">
+     <a href="{{url('admin/products/create')}}" class="btn btn-primary btn-round"> Nuevo Producto</a>
      <table class="table table-hover">
       <thead>
        <th>
@@ -190,12 +191,13 @@
        <?php endforeach; ?>
       </tbody>
      </table>
+     {{ $productos->links() }}
     </div>
    </div>
   </div>
  </div>
-
 </div>
+
 <div class="row">
  <?php foreach ($productos as $row_productos): ?>
   <div class="col-md-4">
