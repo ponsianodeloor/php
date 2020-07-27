@@ -20,6 +20,22 @@ class ProductsController extends Controller
         return view('admin.products.create', compact("category"));
     }
 
+    public function formGuardar(){
+     $category = Category::all('nombre');
+     return view('admin.products.guardar', compact("category"));
+    }
+
+    public function guardar(Request $request){
+     $entrada = $request->all();
+     if ($archivo = $request->file('imagen')) {
+      $nombre = $archivo->getClientOriginalName();
+      $archivo->move('img', $nombre);
+      $entrada['imagen']=$nombre;
+     }
+     Product::create($entrada);
+     return redirect( "/admin/products");
+    }
+
     public function store(Request $request){
      /*
      $entrada = $request->all();
@@ -53,6 +69,9 @@ class ProductsController extends Controller
      $producto->save();
      return redirect( "/admin/products");
     }
+
+
+
 
     public function show($id){
      $producto = Product::findOrFail($id);
