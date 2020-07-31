@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Category;
 use App\Product;
+use App\ProductImage;
 
 class ProductsController extends Controller
 {

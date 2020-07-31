@@ -9,9 +9,16 @@ Route::get('/', function () {
 });
 
 //Route::get('/products', 'ProductsController@index');
-Route::get('/admin/products/guardar', 'ProductsController@formGuardar');
-Route::post('/admin/products/guardar', 'ProductsController@guardar');
-Route::resource('admin/products', 'ProductsController');
+
+Route::middleware(['auth','admin'])->group(function () {
+   Route::get('/admin/products/guardar', 'ProductsController@formGuardar');
+   Route::post('/admin/products/guardar', 'ProductsController@guardar');
+   Route::resource('admin/products', 'ProductsController');Route::get('/admin/products/guardar', 'ProductsController@formGuardar');
+   Route::post('/admin/products/guardar', 'ProductsController@guardar');
+   Route::resource('admin/products', 'ProductsController');
+});
+
+
 
 
 Route::get('/suma', 'TestController@suma');

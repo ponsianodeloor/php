@@ -66,6 +66,11 @@
               <i class="material-icons">apps</i> Usuario
             </a>
             <div class="dropdown-menu dropdown-with-icons">
+              <?php if (auth()->user()->rol_id == 1): ?>
+               <a href="{{url('/admin/products')}}" class="dropdown-item">
+                 <i class="material-icons">layers</i> Agregar Productos
+               </a>
+              <?php endif; ?>
               <a href="../index.html" class="dropdown-item">
                 <i class="material-icons">layers</i> All Components
               </a>
@@ -120,6 +125,8 @@
 
 
   @yield('content')
+
+  
 
   <!--   Core JS Files   -->
   <script src="{{asset('js/core/jquery.min.js')}}" type="text/javascript"></script>

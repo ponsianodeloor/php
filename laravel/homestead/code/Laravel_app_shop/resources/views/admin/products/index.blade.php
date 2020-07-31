@@ -174,6 +174,9 @@
        <th>
          Precio Venta
        </th>
+       <th>
+        Acciones
+       </th>
       </thead>
       <tbody>
        <?php foreach ($productos as $row_productos): ?>
@@ -187,6 +190,17 @@
         <td>{{$row_productos->category->nombre}}</td>
         <td>{{$row_productos['descripcion']}}</td>
         <td>{{$row_productos['precio_venta_unitario']}}</td>
+        <td>
+         <span class="btn btn-success">
+          <i class="fa fa-edit"></i>
+         </span>
+         <span class="btn btn-warning">
+          <i class="fa fa-image"></i>
+         </span>
+         <span class="btn btn-success">
+          <i class="fa fa-clock-o"></i>
+         </span>
+        </td>
        </tr>
        <?php endforeach; ?>
       </tbody>
