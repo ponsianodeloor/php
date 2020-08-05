@@ -71,18 +71,16 @@ class ProductsController extends Controller
      return redirect( "/admin/products");
     }
 
-
-
-
     public function show($id){
      $producto = Product::findOrFail($id);
      return view("admin.products.show", compact("producto"));
     }
 
     public function edit($id){
-      $producto = Product::find($id);
       $category = Category::pluck('nombre','id');
-      return view('admin.products.edit', compact("producto"), compact("category"));
+      $producto = Product::find($id);
+      $productoImagen = ProductImage::where('product_id', $id)->orderBy('id', 'desc')->get();
+      return view('admin.products.edit', compact("category", "producto", "productoImagen"));
     }
 
     public function update(Request $request, $id){

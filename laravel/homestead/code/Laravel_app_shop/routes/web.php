@@ -14,8 +14,8 @@ Route::middleware(['auth','admin'])->group(function () {
    Route::get('/admin/products/guardar', 'ProductsController@formGuardar');
    Route::post('/admin/products/guardar', 'ProductsController@guardar');
    Route::resource('admin/products', 'ProductsController');Route::get('/admin/products/guardar', 'ProductsController@formGuardar');
-   Route::post('/admin/products/guardar', 'ProductsController@guardar');
-   Route::resource('admin/products', 'ProductsController');
+
+   Route::resource('admin/products/image', 'ProductImagesController');
 });
 
 

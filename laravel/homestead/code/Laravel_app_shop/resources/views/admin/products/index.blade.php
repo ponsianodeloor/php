@@ -194,9 +194,12 @@
          <span class="btn btn-success">
           <i class="fa fa-edit"></i>
          </span>
-         <span class="btn btn-warning">
-          <i class="fa fa-image"></i>
-         </span>
+         <a href="{{url('admin/products/'.$row_productos->id.'/edit')}}">
+          <span class="btn btn-warning">
+           <i class="fa fa-image">  </i>
+          </span>
+         </a>
+
          <span class="btn btn-success">
           <i class="fa fa-clock-o"></i>
          </span>

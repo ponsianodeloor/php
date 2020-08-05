@@ -19,12 +19,12 @@ class Product extends Model
      "precio_venta_al_mayor",
      "category_id"
     ];
+
     public function category(){
-     return $this->belongsTo(Category::Class);
-     //return $this->belongsTo('App\Category');
+      return $this->belongsTo(Category::Class);
     }
 
-    public function productImage(){
-     return $this->hasMany('App\ProductImage');
+    public function productImages(){
+      return $this->hasMany('App\ProductImage');
     }
 }
