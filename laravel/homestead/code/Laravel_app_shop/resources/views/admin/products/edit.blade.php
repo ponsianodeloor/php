@@ -14,7 +14,7 @@
         <div class="col-md-8 ml-auto mr-auto">
           <h2 class="text-center title">Editar Producto {{$producto->nombre}}</h2>
           <h4 class="text-center description">Contactanos.</h4>
-          {!! Form::model($producto, ['method'=>'POST', 'action'=>['ProductsController@update', $producto->id]]) !!}
+          {!! Form::model($producto, ['method'=>'POST','files'=>'true', 'action'=>['ProductsController@update', $producto->id]]) !!}
           <div class="row">
            <div class="col-md-6">
             <div class="form-group">

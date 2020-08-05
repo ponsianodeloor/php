@@ -163,6 +163,9 @@
          ID
        </th>
        <th>
+        Imagen
+       </th>
+       <th>
          Producto
        </th>
        <th>
@@ -186,6 +189,17 @@
          <a href="{{url('admin/products/'.$row_productos->id.'/edit')}}">Actualizar</a>
         </td>
         <td>{{$row_productos['id']}}</td>
+        <td>
+         <?php
+         $imagen_http = explode("//", $row_productos['imagen']);
+         ?>
+         <?php if (substr($imagen_http[0], 0,4)  == "http"): ?>
+           <img src="{{$row_productos['imagen']}}" alt="">
+           <?php else: ?>
+           <img src="{{ asset('img')}}/{{$row_productos->imagen}}" class="imagenCabecera" alt="" width="250px" height="250px">
+         <?php endif; ?>
+
+        </td>
         <td>{{$row_productos['nombre']}} </td>
         <td>{{$row_productos->category->nombre}}</td>
         <td>{{$row_productos['descripcion']}}</td>

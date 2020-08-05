@@ -85,11 +85,15 @@ class ProductsController extends Controller
 
     public function update(Request $request, $id){
       $producto = Product::findOrFail($id);
+
       if ($archivo = $request->file('imagen')) {
-       $nombre = $archivo->getClientOriginalName();
-       $archivo->move('img', $nombre);
+       $nombre_archivo = $archivo->getClientOriginalName();
+       $archivo->move('img', $nombre_archivo);
        $producto->imagen = $nombre_archivo;
+      }else {
+       $producto->imagen = "";
       }
+
       $producto->update($request->all());
       return redirect( "/admin/products");
     }
