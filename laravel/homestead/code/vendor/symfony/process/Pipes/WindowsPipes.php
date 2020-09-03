@@ -35,9 +35,9 @@ class WindowsPipes extends AbstractPipes
     ];
     private $haveReadSupport;
 
-    public function __construct($input, bool $haveReadSupport)
+    public function __construct($input, $haveReadSupport)
     {
-        $this->haveReadSupport = $haveReadSupport;
+        $this->haveReadSupport = (bool) $haveReadSupport;
 
         if ($this->haveReadSupport) {
             // Fix for PHP bug #51800: reading from STDOUT pipe hangs forever on Windows if the output is too big.
@@ -56,6 +56,9 @@ class WindowsPipes extends AbstractPipes
                     $file = sprintf('%s\\sf_proc_%02X.%s', $tmpDir, $i, $name);
 
                     if (!$h = fopen($file.'.lock', 'w')) {
+                        if (file_exists($file.'.lock')) {
+                            continue 2;
+                        }
                         restore_error_handler();
                         throw new RuntimeException('A temporary file could not be opened to write the process output: '.$lastError);
                     }
@@ -93,7 +96,7 @@ class WindowsPipes extends AbstractPipes
     /**
      * {@inheritdoc}
      */
-    public function getDescriptors(): array
+    public function getDescriptors()
     {
         if (!$this->haveReadSupport) {
             $nullstream = fopen('NUL', 'c');
@@ -118,7 +121,7 @@ class WindowsPipes extends AbstractPipes
     /**
      * {@inheritdoc}
      */
-    public function getFiles(): array
+    public function getFiles()
     {
         return $this->files;
     }
@@ -126,7 +129,7 @@ class WindowsPipes extends AbstractPipes
     /**
      * {@inheritdoc}
      */
-    public function readAndWrite(bool $blocking, bool $close = false): array
+    public function readAndWrite($blocking, $close = false)
     {
         $this->unblock();
         $w = $this->write();
@@ -161,7 +164,7 @@ class WindowsPipes extends AbstractPipes
     /**
      * {@inheritdoc}
      */
-    public function haveReadSupport(): bool
+    public function haveReadSupport()
     {
         return $this->haveReadSupport;
     }
@@ -169,7 +172,7 @@ class WindowsPipes extends AbstractPipes
     /**
      * {@inheritdoc}
      */
-    public function areOpen(): bool
+    public function areOpen()
     {
         return $this->pipes && $this->fileHandles;
     }
