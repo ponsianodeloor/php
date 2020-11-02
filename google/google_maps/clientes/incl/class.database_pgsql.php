@@ -7,7 +7,7 @@ class Database extends PDO
 	//nombre servidor
 	public $host = "localhost";
 	//puerto postgreSql
-	public $port = '5432';
+	public $port = '5433';
 	//nombre usuarios base de datos
 	public $user = "postgres";
 	//password usuario
