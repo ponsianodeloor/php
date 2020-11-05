@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
+
+
+
+	<style>
+
+		table {border-color:#fff;}
+
+		.selected {background-color:#eee;}
+
+	</style>
+
+
+
+</head>
+
+
+
+<body>
+
+
+
+<input id="test" type="text" />
+
+
+
+<script>
+
+$(document).ready(function(){
+
+	// Creamos el evento
+
+	e = jQuery.Event("keypress")
+
+	// Indicamos la tecla que deseamos que se pulse de manera automatica
+
+	e.which = 13
+
+
+
+	$("#test").keypress(function(e){
+
+	    alert('se ha pulsado la tecla ' + e.which)
+
+	}).trigger(e)
+
+});
+
+</script>
+
+
+
+</body></html>

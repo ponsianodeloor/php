@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+ <head>
+  <meta charset="utf-8">
+  <title>DataTable</title>
+  <link rel="stylesheet" type="text/css" href="DataTables/datatables.min.css"/>
+  <link rel="stylesheet" type="text/css" href="DataTables/-1.10.22/css/jquery.dataTables.min.css"/>
+<link rel="stylesheet" type="text/css" href="DataTables/AutoFill-2.3.5/css/autoFill.dataTables.css"/>
+<link rel="stylesheet" type="text/css" href="DataTables/Buttons-1.6.5/css/buttons.dataTables.min.css"/>
+<link rel="stylesheet" type="text/css" href="DataTables/ColReorder-1.5.2/css/colReorder.dataTables.min.css"/>
+<link rel="stylesheet" type="text/css" href="DataTables/FixedColumns-3.3.1/css/fixedColumns.dataTables.min.css"/>
+<link rel="stylesheet" type="text/css" href="DataTables/FixedHeader-3.1.7/css/fixedHeader.dataTables.min.css"/>
+<link rel="stylesheet" type="text/css" href="DataTables/Responsive-2.2.6/css/responsive.dataTables.min.css"/>
+<link rel="stylesheet" type="text/css" href="DataTables/RowGroup-1.1.2/css/rowGroup.dataTables.min.css"/>
+<link rel="stylesheet" type="text/css" href="DataTables/Scroller-2.0.3/css/scroller.dataTables.min.css"/>
+<link rel="stylesheet" type="text/css" href="DataTables/SearchBuilder-1.0.0/css/searchBuilder.dataTables.min.css"/>
+<link rel="stylesheet" type="text/css" href="DataTables/SearchPanes-1.2.1/css/searchPanes.dataTables.min.css"/>
+
+
+
+
+
+ </head>
+ <body>
+  <table id="dt_cliente" class="table table-bordered table-hover" cellspacing="0" width="100%">
+   <thead>
+    <tr>
+     <th>Nombre</th>
+     <th>Apellidos</th>
+     <th>Dni</th>
+     <th></th>
+    </tr>
+   </thead>
+  </table>
+
+
+  <link rel="stylesheet" type="text/css" href="DataTables/datatables.min.js"/>
+  <script type="text/javascript" src="DataTables/jQuery-3.3.1/jquery-3.3.1.min.js"></script>
+  <script type="text/javascript" src="DataTables/pdfmake-0.1.36/pdfmake.min.js"></script>
+  <script type="text/javascript" src="DataTables/pdfmake-0.1.36/vfs_fonts.js"></script>
+  <script type="text/javascript" src="DataTables/DataTables-1.10.22/js/jquery.dataTables.min.js"></script>
+  <script type="text/javascript" src="DataTables/AutoFill-2.3.5/js/dataTables.autoFill.min.js"></script>
+  <script type="text/javascript" src="DataTables/Buttons-1.6.5/js/dataTables.buttons.min.js"></script>
+  <script type="text/javascript" src="DataTables/Buttons-1.6.5/js/buttons.colVis.min.js"></script>
+  <script type="text/javascript" src="DataTables/Buttons-1.6.5/js/buttons.flash.min.js"></script>
+  <script type="text/javascript" src="DataTables/Buttons-1.6.5/js/buttons.html5.min.js"></script>
+  <script type="text/javascript" src="DataTables/ColReorder-1.5.2/js/dataTables.colReorder.min.js"></script>
+  <script type="text/javascript" src="DataTables/FixedColumns-3.3.1/js/dataTables.fixedColumns.min.js"></script>
+  <script type="text/javascript" src="DataTables/FixedHeader-3.1.7/js/dataTables.fixedHeader.min.js"></script>
+  <script type="text/javascript" src="DataTables/Responsive-2.2.6/js/dataTables.responsive.min.js"></script>
+  <script type="text/javascript" src="DataTables/RowGroup-1.1.2/js/dataTables.rowGroup.min.js"></script>
+  <script type="text/javascript" src="DataTables/Scroller-2.0.3/js/dataTables.scroller.min.js"></script>
+  <script type="text/javascript" src="DataTables/SearchBuilder-1.0.0/js/dataTables.searchBuilder.min.js"></script>
+  <script type="text/javascript" src="DataTables/SearchPanes-1.2.1/js/dataTables.searchPanes.min.js"></script>
+
+  <script>
+   $(document).on("ready", function(){
+    listar();
+   });
+
+   var listar = function(){
+    var table = $('#dt_cliente').DataTable({
+     "ajax":{
+       "method":"POST",
+       "url":"json_data/mvc_select_jsondata_postgres_datatable.php"
+     },
+     "columns":[
+      {"data":"codacumu"},
+      {"data":"propietari"},
+      {"data":"numero_ide"}
+
+     ]
+    });
+   }
+
+
+
+
+  </script>
+ </body>
+</html>
