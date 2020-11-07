@@ -8,7 +8,7 @@
 
 <?php
 $Base  = new Base();
-$sentencia = $Base->query("select id, codacumu as name, propietari, lat_y, lng_x FROM geo_agua_potable_medidores");
+$sentencia = $Base->query("select id, codigo_catastral as name, propietario_razon_social, lat_y, lng_x FROM geo_agua_potable_medidores");
 $agua_potable_medidores = $sentencia->fetchAll(PDO::FETCH_OBJ);
 
 foreach($agua_potable_medidores as $row_agua_potable_medidores){

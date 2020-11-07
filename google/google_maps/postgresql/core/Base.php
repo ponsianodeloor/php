@@ -12,7 +12,7 @@
   * Variable de conexion a la DB para el modelo Principal core/MainModel.php]
   * @var string
   */
- const SGBD = "pgsql:host=".SERVER.";dbname=".DB;
+ const SGBD = "pgsql:host=".SERVER.";dbname=".DB.";port=".PORT;
 
  /**
   * [METHOD description encriptacion de datos]
@@ -47,7 +47,7 @@
              parent::__construct(
                  'pgsql:host='.$this->host.';port='.$this->port.';dbname='.$this->dbname,
                  $this->user,
-                 $this->pass                 
+                 $this->pass
              );
              $this->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
              $this->dbh = $this;
