@@ -1,9 +1,5 @@
 <?php
- if ($peticion_ajax) {
-  include_once "../core/Base.php";
- }else{
-  include_once "core/Base.php";
- }
+ include_once "Base.php";
 
 class MainModel extends Base{
 
