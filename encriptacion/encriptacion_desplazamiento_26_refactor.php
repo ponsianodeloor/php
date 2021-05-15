@@ -4,33 +4,37 @@ echo chr(65);
 echo chr(90);
 echo "<br>";
 
-$cadena = "THE LEYEND OF ZELDA"; //colocar la frase en MAYUSCULA
+$cadena = "DEADSPACE"; //colocar la frase en MAYUSCULA
 $letra_encriptacion = "D"; //YAKU VERSU SLASSO V 21; PARAMETRIZAR PALABRAS W 22
+$letra_encriptacion_2 = "F";
 $tamanio = strlen($cadena);
 
 $encriptacion = new Encriptacion;
 
 $letra_enriptada = $encriptacion->encriptacion_26_codificar_letra($letra_encriptacion);
+$letra_enriptada_2 = $encriptacion->encriptacion_26_codificar_letra($letra_encriptacion_2);
 $cadena_encriptada = "";
 
 echo "$cadena tamano: ".$tamanio." letra encriptada $letra_encriptacion $letra_enriptada";
+echo "<br> letra encriptada_2 $letra_encriptacion_2 $letra_enriptada_2";
 echo "<br>Desplazamiento 26<br><br>";
 
 for($i=0; $i < strlen($cadena); $i++){
- $numero_codificado =  substr($cadena, $i, 1);
+ $letra_substr =  substr($cadena, $i, 1);
 
- if ($numero_codificado == " "){
-   $numero_codificado = "";
+ if ($letra_substr == " "){
+   $letra_substr = "";
    $cadena_encriptada.=" ";
    goto noPrint;
  }
 
 
- echo $numero_codificado." ";
- $obtener_digito =  $encriptacion->encriptacion_26_codificar_letra($numero_codificado);
-
+ echo $letra_substr." ";
+ $obtener_digito =  $encriptacion->encriptacion_26_codificar_letra($letra_substr);
  echo $obtener_digito;
- $residuo = ($obtener_digito + $letra_enriptada) % 26;
+
+ 
+ $residuo = ($obtener_digito + $letra_enriptada ) % 26;
  echo " Residuo $residuo ";
  $letra_codificada = $encriptacion->encriptacion_26_codificar_numero($residuo);
  echo $letra_codificada;
