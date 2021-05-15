@@ -22,12 +22,13 @@ if (isset($_POST["x"]) && isset($_POST["y"])) {
  // code...
     $a1 = $_POST["x"];
     $b1 = $_POST["y"];
-
-    $resp = mcd($a1,$b1);
-    $resp2 = mcm($a1,$b1);
-
+    if($a1<>0 && $b1<>0){
+      $resp = mcd($a1,$b1);
+      $resp2 = mcm($a1,$b1);
+    }
+    
     echo "el mcm es: $resp2<br>";
-    //echo "el mcd es: $resp";
+    echo "el mcd es: $resp";
 }
 
 function mcd($a,$b) {
