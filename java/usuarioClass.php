@@ -2,31 +2,31 @@
 class Usuarios{
 
     public $id_user = 0 ;
-    //Función que crea y devuelve un objeto de conexión a la base de datos y chequea el estado de la misma. 
-    function conectarBD(){ 
+    //Función que crea y devuelve un objeto de conexión a la base de datos y chequea el estado de la misma.
+    function conectarBD(){
             $server = "localhost";
             $usuario = "root";
-            $pass = "";
-            $BD = "GeekyTheoryBD";
+            $pass = "ponsiano";
+            $BD = "java_php";
             //variable que guarda la conexión de la base de datos
-            $conexion = mysqli_connect($server, $usuario, $pass, $BD); 
+            $conexion = mysqli_connect($server, $usuario, $pass, $BD);
             //Comprobamos si la conexión ha tenido exito
-            if(!$conexion){ 
-               echo 'Ha sucedido un error inexperado en la conexion de la base de datos<br>'; 
-            } 
-            //devolvemos el objeto de conexión para usarlo en las consultas  
-            return $conexion; 
-    }  
+            if(!$conexion){
+               echo 'Ha sucedido un error inexperado en la conexion de la base de datos<br>';
+            }
+            //devolvemos el objeto de conexión para usarlo en las consultas
+            return $conexion;
+    }
     /*Desconectar la conexion a la base de datos*/
     function desconectarBD($conexion){
             //Cierra la conexión y guarda el estado de la operación en una variable
-            $close = mysqli_close($conexion); 
+            $close = mysqli_close($conexion);
             //Comprobamos si se ha cerrado la conexión correctamente
-            if(!$close){  
-               echo 'Ha sucedido un error inexperado en la desconexion de la base de datos<br>'; 
-            }    
+            if(!$close){
+               echo 'Ha sucedido un error inexperado en la desconexion de la base de datos<br>';
+            }
             //devuelve el estado del cierre de conexión
-            return $close;         
+            return $close;
     }
 
     //Devuelve un array multidimensional con el resultado de la consulta
@@ -40,7 +40,7 @@ class Usuarios{
         //guardamos en un array multidimensional todos los datos de la consulta
         $i=0;
         while($row = mysqli_fetch_array($result))
-        {   
+        {
             //guardamos en rawdata todos los vectores/filas que nos devuelve la consulta
             $rawdata[$i] = $row;
             $i++;
@@ -55,9 +55,9 @@ class Usuarios{
         //creamos la conexión
         $conexion = $this->conectarBD();
         //Escribimos la sentencia sql necesaria respetando los tipos de datos
-        $sql = "insert into usuarios (nombre,apellidos,email) 
+        $sql = "insert into usuarios (nombre,apellidos,email)
         values ('".$nombre."','".$apellidos."','".$email."')";
-        //hacemos la consulta y la comprobamos 
+        //hacemos la consulta y la comprobamos
         $consulta = mysqli_query($conexion,$sql);
         if(!$consulta){
             echo "No se ha podido insertar una nueva Medalla en la base de datos<br><br>".mysqli_error($conexion);
