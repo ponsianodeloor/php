@@ -6,6 +6,7 @@ $b = 5;
 echo "plaintext ";
 echo $plaintext = "DEADSPACE";
 echo $ciphertext = trim(affine_cipher_encryption($plaintext, $a, $b));
+echo "<br>";
 
 /*
 echo "<br>plaintext ";
@@ -105,53 +106,6 @@ function num( $char ) {
  */
 function tmod($a, $m = 26) {
     return (($a % $m) + $m) % $m;
-}
-
-function z_affine_cipher_decrypttion($ciphertext, $a, $b){
- $plaintext = "";
- for($i = 0; $i < strlen($ciphertext); $i++) {
-
-  $j = substr($ciphertext, $i, 1); //j es cada letra
-  $plaintext .= chr(((modinv($a, 26)*ord($j) - ord('A') - $b)) %26 + ord("A"));
- }
- return $plaintext;
-}
-
-//decrypt affine_cipher_encryption
-function z_egcd($a, $b){
-
- $x = 0; $y = 1; $u = 1; $v = 0;
-
-	while ($a != 0){
-  $q = intdiv($b, $a);
-  $r = $b%$a;
-		$m = $x-$u*$q;
-  $n = $y-$v*$q;
-		$b = $a;
-  $a = $r;
-  $x = $u;
-  $y = $v;
-  $u = $m;
-  $v = $n;
- }
-
-	$gcd = $b;
- $gdc_array = array("gcd"=>$gcd, "x"=>$x, "y"=>$y);
-	//return ($gcd, $x, $y)
-	return ($gdc_array);
-}
-
-function z_modinv($a, $m){
- $gcd_array = egcd($a, $m);
- $gcd = $gcd_array["gcd"];
- $x = $gcd_array["x"];
- $y = $gcd_array["y"];
-
- if ($gcd !=1) {
-  return null;
- }else{
-  return $x % $m;
- }
 }
 
 ?>
