@@ -5,6 +5,7 @@ $a = 3;
 $b = 5;
 echo "plaintext ";
 echo $plaintext = "DEADSPACE";
+echo "<br>";
 echo $ciphertext = trim(affine_cipher_encryption($plaintext, $a, $b));
 echo "<br>";
 
@@ -15,7 +16,7 @@ echo affine_cipher_encryption($plaintext, $a, $b);
 */
 
 echo "<br>";
-echo $plaintext = affine_cipher_decrypttion("ORFOHYFLR", $a, $b);
+echo $plaintext = affine_cipher_decryption("ORFOHYFLR", $a, $b);
 
 function affine_cipher_encryption($plaintext, $a, $b){
  $ciphertext = " ";
@@ -46,7 +47,7 @@ function affine_cipher_encryption($plaintext, $a, $b){
  * @param array $key the original encryption key
  * @result string the decrypted character
  */
-function affine_cipher_decrypttion($ciphertext, $a, $b ) {
+function affine_cipher_decryption($ciphertext, $a, $b ) {
     $a = mod_inverse($a, 26);
 
     $plaintext = '';
